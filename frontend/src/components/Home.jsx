@@ -11,6 +11,43 @@ const Home = () => {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [currentHeroImageIndex, setCurrentHeroImageIndex] = useState(0);
+  
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const endpoint = isLoginMode ? '/api/auth/login' : '/api/auth/signup';
+    const url = `https://popflix-lp68.onrender.com${endpoint}`;
+    
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: username, password })
+      });
+      const data = await response.json();
+      
+      if (response.ok) {
+        alert(`${isLoginMode ? 'Login' : 'Signup'} successful!`);
+        if (data.token) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('username', username);
+          localStorage.setItem('password', password);
+          window.location.reload();
+        }
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      alert('An error occurred. Please try again.');
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   // Auto scroll hero image every 3 seconds
   useEffect(() => {
@@ -85,19 +122,35 @@ const Home = () => {
                   </button>
                 </div>
                 
-                <div className="space-y-4">
+                <form className="space-y-4" onSubmit={handleSubmit}>
                   <div>
                     <label className="block text-xs text-gray-400 mb-1">Username</label>
-                    <input type="text" className="w-full bg-white text-black px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-[#f3c669]" />
+                    <input 
+                      type="text" 
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      required
+                      className="w-full bg-white text-black px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-[#f3c669]" 
+                    />
                   </div>
                   <div>
                     <label className="block text-xs text-gray-400 mb-1">Password</label>
-                    <input type="password" className="w-full bg-white text-black px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-[#f3c669]" />
+                    <input 
+                      type="password" 
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                      className="w-full bg-white text-black px-3 py-2 rounded-md outline-none focus:ring-2 focus:ring-[#f3c669]" 
+                    />
                   </div>
-                  <button className="w-full bg-[#f3c669] text-black font-medium py-2.5 rounded-md mt-6 hover:bg-[#e0b55c] transition-colors">
-                    {isLoginMode ? 'Login' : 'Sign Up'}
+                  <button 
+                    type="submit" 
+                    disabled={isLoading}
+                    className="w-full bg-[#f3c669] text-black font-medium py-2.5 rounded-md mt-6 hover:bg-[#e0b55c] transition-colors disabled:opacity-50"
+                  >
+                    {isLoading ? 'Processing...' : (isLoginMode ? 'Login' : 'Sign Up')}
                   </button>
-                </div>
+                </form>
               </div>
             )}
           </div>
