@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { moviesData } from './Dashboard';
+import { moviesData } from '../data/movies.js';
 
 const MyList = ({ onViewChange }) => {
   const [myMovies, setMyMovies] = useState([]);

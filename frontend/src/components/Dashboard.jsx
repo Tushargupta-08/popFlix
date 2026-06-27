@@ -1,69 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-export const moviesData = [
-  {
-    id: 1,
-    title: 'Omni Loop',
-    poster: '/movie_one.png',
-    backdrop: '/movie_one.png',
-    year: '2024',
-    duration: '1h 47m',
-    genre: 'Sci-Fi',
-    rating: '4.8',
-    reviews: '150',
-    overview: 'A quantum physicist finds herself stuck in a time loop with a black hole growing in her chest and only a week to live. When she meets a gifted student they team up to save her life and unlock the mysteries of time travel.',
-    cast: 'Chris Witaske, Ayo Edebiri',
-    director: 'Bernardo Britto'
-  },
-  {
-    id: 2,
-    title: 'Strange Darling',
-    poster: '/movie_two.png',
-    backdrop: '/movie_two.png',
-    year: '2024',
-    duration: '1h 36m',
-    genre: 'Thriller',
-    rating: '5.0',
-    reviews: '320',
-    overview: 'A clever and relentless thriller about a twisted one-night stand that escalates into a brutal serial killer\'s murder spree.',
-    cast: 'Willa Fitzgerald, Kyle Gallner',
-    director: 'JT Mollner'
-  },
-  {
-    id: 3,
-    title: 'Cuckoo',
-    poster: '/movie_three.png',
-    backdrop: '/movie_three.png',
-    year: '2024',
-    duration: '1h 42m',
-    genre: 'Horror',
-    rating: '3.8',
-    reviews: '89',
-    overview: 'A 17-year-old girl is forced to move with her family to a resort where things are not what they seem.',
-    cast: 'Hunter Schafer, Dan Stevens',
-    director: 'Tilman Singer'
-  },
-  {
-    id: 4,
-    title: 'Snow White',
-    poster: '/hero_poster.png', // Using the cinematic poster we generated earlier
-    backdrop: '/hero_poster.png',
-    year: '2024',
-    duration: '2h 10m',
-    genre: 'Fantasy',
-    rating: '5.0',
-    reviews: '500',
-    overview: 'A magical journey into an enchanted forest where a young princess must uncover her true destiny.',
-    cast: 'Rachel Zegler, Gal Gadot',
-    director: 'Marc Webb'
-  }
-];
+import { moviesData } from '../data/movies.js';
 
 const Dashboard = ({ onViewChange }) => {
   const [currentHeroImageIndex, setCurrentHeroImageIndex] = useState(0);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [profileData, setProfileData] = useState({ username: 'Loading...', password: 'Loading...' });
+  const [displayCount, setDisplayCount] = useState(4);
 
   useEffect(() => {
     if (isProfileOpen && profileData.username === 'Loading...') {
@@ -116,12 +60,13 @@ const Dashboard = ({ onViewChange }) => {
 
   const handleMovieClick = (movie) => {
     setSelectedMovie(movie);
+    setDisplayCount(4);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const otherMovies = selectedMovie 
-    ? moviesData.filter(m => m.id !== selectedMovie.id) 
-    : moviesData.slice(0, 3);
+    ? moviesData.filter(m => m.id !== selectedMovie.id).slice(0, displayCount) 
+    : moviesData.slice(0, displayCount);
 
   return (
     <div className="bg-[#0a0a0a] min-h-screen text-white font-sans overflow-x-hidden">
@@ -343,9 +288,12 @@ const Dashboard = ({ onViewChange }) => {
           ))}
         </div>
         
-        {!selectedMovie && (
+        {displayCount < (selectedMovie ? moviesData.length - 1 : moviesData.length) && (
           <div className="flex justify-center">
-            <button className="bg-[#1a1a1a] hover:bg-[#2a2a2a] transition-colors text-sm font-medium px-6 py-3 rounded-md flex items-center gap-2 text-gray-300 border border-white/5">
+            <button 
+              onClick={() => setDisplayCount(prev => prev + 4)}
+              className="bg-[#1a1a1a] hover:bg-[#2a2a2a] transition-colors text-sm font-medium px-6 py-3 rounded-md flex items-center gap-2 text-gray-300 border border-white/5"
+            >
               LOAD MORE MOVIES
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
