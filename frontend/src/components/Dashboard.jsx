@@ -9,6 +9,7 @@ const Dashboard = ({ onViewChange }) => {
   const [profileData, setProfileData] = useState({ username: 'Loading...', password: 'Loading...' });
   const [displayCount, setDisplayCount] = useState(4);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
 
   useEffect(() => {
     if (isProfileOpen && profileData.username === 'Loading...') {
@@ -301,7 +302,10 @@ const Dashboard = ({ onViewChange }) => {
               </div>
               
               <div className="flex items-center gap-4">
-                <button className="bg-[#f3c669] hover:bg-[#e0b55c] transition-colors text-black font-bold px-6 py-2.5 rounded-md flex items-center justify-center gap-2">
+                <button 
+                  onClick={() => setIsVideoModalOpen(true)}
+                  className="bg-[#f3c669] hover:bg-[#e0b55c] transition-colors text-black font-bold px-6 py-2.5 rounded-md flex items-center justify-center gap-2"
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -422,6 +426,31 @@ const Dashboard = ({ onViewChange }) => {
           />
         </div>
       </section>
+
+      {/* Video Modal */}
+      {isVideoModalOpen && selectedMovie && selectedMovie.videoUrl && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-10">
+          <button 
+            onClick={() => setIsVideoModalOpen(false)} 
+            className="absolute top-4 right-4 md:top-8 md:right-8 w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-white/20 rounded-full text-white transition-colors z-50"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="w-full max-w-6xl aspect-video bg-black rounded-xl overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.8)] border border-white/10">
+            <iframe 
+              width="100%" 
+              height="100%" 
+              src={selectedMovie.videoUrl} 
+              title={selectedMovie.title}
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -11,7 +11,8 @@ export const moviesData = [
     reviews: '150',
     overview: 'A quantum physicist finds herself stuck in a time loop with a black hole growing in her chest and only a week to live. When she meets a gifted student they team up to save her life and unlock the mysteries of time travel.',
     cast: 'Chris Witaske, Ayo Edebiri',
-    director: 'Bernardo Britto'
+    director: 'Bernardo Britto',
+    videoUrl: 'https://www.youtube.com/embed/PLl99DlL6b4?autoplay=1'
   },
   {
     id: 2,
@@ -25,7 +26,8 @@ export const moviesData = [
     reviews: '320',
     overview: 'A clever and relentless thriller about a twisted one-night stand that escalates into a brutal serial killer\'s murder spree.',
     cast: 'Willa Fitzgerald, Kyle Gallner',
-    director: 'JT Mollner'
+    director: 'JT Mollner',
+    videoUrl: 'https://www.youtube.com/embed/uYPbbksJxIg?autoplay=1'
   },
   {
     id: 3,
@@ -39,7 +41,8 @@ export const moviesData = [
     reviews: '89',
     overview: 'A 17-year-old girl is forced to move with her family to a resort where things are not what they seem.',
     cast: 'Hunter Schafer, Dan Stevens',
-    director: 'Tilman Singer'
+    director: 'Tilman Singer',
+    videoUrl: 'https://www.youtube.com/embed/x0XDEhP4MQs?autoplay=1'
   },
   {
     id: 4,
@@ -53,7 +56,8 @@ export const moviesData = [
     reviews: '500',
     overview: 'A magical journey into an enchanted forest where a young princess must uncover her true destiny.',
     cast: 'Rachel Zegler, Gal Gadot',
-    director: 'Marc Webb'
+    director: 'Marc Webb',
+    videoUrl: 'https://www.youtube.com/embed/U2Qp5pL3ovA?autoplay=1'
   },
   {
     id: 5,
@@ -64,10 +68,11 @@ export const moviesData = [
     duration: '2h 18m',
     genre: 'Drama',
     rating: '4.5',
-    reviews: '1.2K',
-    overview: 'Arthur Fleck is institutionalized at Arkham awaiting trial for his crimes as Joker.',
+    reviews: '2.1k',
+    overview: 'Failed comedian Arthur Fleck meets the love of his life, Harley Quinn, while incarcerated at Arkham State Hospital.',
     cast: 'Joaquin Phoenix, Lady Gaga',
-    director: 'Todd Phillips'
+    director: 'Todd Phillips',
+    videoUrl: 'https://www.youtube.com/embed/Way9Dexny3w?autoplay=1'
   },
   {
     id: 6,
@@ -78,10 +83,11 @@ export const moviesData = [
     duration: '2h 46m',
     genre: 'Sci-Fi',
     rating: '4.9',
-    reviews: '2.5K',
-    overview: 'Paul Atreides unites with Chani and the Fremen while on a warpath of revenge.',
+    reviews: '5.4k',
+    overview: 'Paul Atreides unites with Chani and the Fremen while on a warpath of revenge against the conspirators who destroyed his family.',
     cast: 'Timothée Chalamet, Zendaya',
-    director: 'Denis Villeneuve'
+    director: 'Denis Villeneuve',
+    videoUrl: 'https://www.youtube.com/embed/Way9Dexny3w?autoplay=1'
   },
   {
     id: 7,
@@ -92,10 +98,11 @@ export const moviesData = [
     duration: '1h 41m',
     genre: 'Horror',
     rating: '4.2',
-    reviews: '400',
-    overview: 'FBI agent Lee Harker is assigned to an unsolved serial killer case.',
+    reviews: '420',
+    overview: 'FBI agent Lee Harker is assigned to an unsolved serial killer case that takes unexpected turns, revealing evidence of the occult.',
     cast: 'Maika Monroe, Nicolas Cage',
-    director: 'Oz Perkins'
+    director: 'Oz Perkins',
+    videoUrl: 'https://www.youtube.com/embed/PLl99DlL6b4?autoplay=1'
   },
   {
     id: 8,
@@ -106,9 +113,10 @@ export const moviesData = [
     duration: '1h 59m',
     genre: 'Horror',
     rating: '4.4',
-    reviews: '600',
-    overview: 'While scavenging the deep ends of a derelict space station, a group of young colonizers face the most terrifying life form in the universe.',
+    reviews: '850',
+    overview: 'While scavenging the deep ends of a derelict space station, a group of young space colonizers come face to face with the most terrifying life form in the universe.',
     cast: 'Cailee Spaeny, David Jonsson',
-    director: 'Fede Álvarez'
+    director: 'Fede Alvarez',
+    videoUrl: 'https://www.youtube.com/embed/x0XDEhP4MQs?autoplay=1'
   }
 ];
